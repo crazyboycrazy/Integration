@@ -16,3 +16,11 @@ seqkit grep -f real_kimeric_read merged.fastq  > extracted.fq
 #change from fastq to fasta file
 seqkit fq2fa  extracted.fastq  > extracted.fa
 
+#Make blast reference
+#1) extract bacteria fasta
+less output_minimap.sam |cut -f 3|grep kraken|sort|uniq > bacteria_name
+seqkit grep -f bacteria_name  ../Bacteria_genome/library.fna  > Bacteria_library.fna
+#2) merge bacteria and zebrafish fasta
+cat Bacteria_library.fna  ../Zebrafish_genome/GCA_903798175.1_fDreNAz1.1_genomic.fna  > merged_reference.fa
+#3) make blast db
+blast/ncbi-blast-2.14.0+/bin/makeblastdb -in merged_reference.fa -dbtype nucl -out output_db
