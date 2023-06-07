@@ -11,7 +11,7 @@ less output_minimap.sam |cut -f 3|grep kraken|sort|uniq > bacteria_name
 python real_kimericread.py 2048.sam kimeric_read_id > real_kimeric_read
 
 #extract real kimeric read
-seqkit grep -f real_kimeric_read merged.fastq  > extracted.fastq
+seqkit grep -f real_kimeric_read merged.fastq  > extracted.fq
 
 #change from fastq to fasta file
 seqkit fq2fa  extracted.fastq  > extracted.fa
