@@ -9,3 +9,10 @@ less output_minimap.sam |cut -f 3|grep kraken|sort|uniq > bacteria_name
 
 #real_kimeric read id  extract (한쪽은 zebra 한쪽은 bacteria)
 python real_kimericread.py 2048.sam kimeric_read_id > real_kimeric_read
+
+#extract real kimeric read
+seqkit grep -f real_kimeric_read merged.fastq  > extracted.fastq
+
+#change from fastq to fasta file
+seqkit fq2fa  extracted.fastq  > extracted.fa
+
