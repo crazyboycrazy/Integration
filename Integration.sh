@@ -25,9 +25,7 @@ less output_minimap.sam |cut -f 3|grep kraken|sort|uniq > bacteria_name
 seqkit grep -f bacteria_name  ../Bacteria_genome/library.fna  > Bacteria_library.fna
 #2) merge bacteria and zebrafish fasta
 cat Bacteria_library.fna  ../Zebrafish_genome/GCA_903798175.1_fDreNAz1.1_genomic.fna  > merged_reference.fa
-#3) make blast db
-blast/ncbi-blast-2.14.0+/bin/makeblastdb -in merged_reference.fa -dbtype nucl -out output_db
 
 
 #Blast Search
-../blast/ncbi-blast-2.14.0+/bin/blastn -query real_kimeric/extracted.fasta -subject blast_reference/merged_reference.fa -outfmt "7 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen" -evalue 1e-6 -task megablast > blast_out_result
+~/blastn/ncbi-blast-2.14.0+/bin/blastn -query extracted.fasta -subject merged_reference.fa -outfmt "7 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen" -evalue 1e-6 -task megablast > blast_out_result
