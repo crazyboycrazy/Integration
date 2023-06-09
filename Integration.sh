@@ -7,6 +7,9 @@ samtools view -T ../Zebra_Bacteria_merge_genome/Bacteria_zebra_genome.fna -f 204
 #extract read ID
 less output_minimap.sam |cut -f 3|grep kraken|sort|uniq > bacteria_name
 
+#extract kimeric read id
+less 2048.sam |grep -v "^@"|cut -f 1 >  kimeric_read_id
+
 #real_kimeric read id  extract (한쪽은 zebra 한쪽은 bacteria)
 python real_kimericread.py 2048.sam kimeric_read_id > real_kimeric_read
 
