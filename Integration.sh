@@ -14,10 +14,10 @@ less 2048.sam |grep -v "^@"|cut -f 1 >  kimeric_read_id
 python real_kimericread.py 2048.sam kimeric_read_id > real_kimeric_read
 
 #extract real kimeric read
-seqkit grep -f real_kimeric_read merged.fastq  > extracted.fq
+seqkit grep -f real_kimeric_read merged.fastq  > extracted.fastq
 
 #change from fastq to fasta file
-seqkit fq2fa  extracted.fastq  > extracted.fa
+seqkit fq2fa  extracted.fastq  > extracted.fasta
 
 #Make blast reference
 #1) extract bacteria fasta
