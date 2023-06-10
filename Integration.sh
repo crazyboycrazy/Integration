@@ -1,11 +1,10 @@
 #minimap 
 ../minimap2-2.26_x64-linux/minimap2 -ax map-ont -t 10 ../Zebra_Bacteria_merge_genome/Bacteria_zebra_genome.fna  merged.fastq > output_minimap.sam
 
+
 #samtools 
 samtools view -T ../Zebra_Bacteria_merge_genome/Bacteria_zebra_genome.fna -f 2048 -h output_minimap.sam  > 2048.sam
 
-#extract read ID
-less output_minimap.sam |cut -f 3|grep kraken|sort|uniq > bacteria_name
 
 #extract kimeric read id
 less 2048.sam |grep -v "^@"|cut -f 1 >  kimeric_read_id
@@ -24,7 +23,7 @@ seqkit fq2fa  extracted.fastq  > extracted.fasta
 less output_minimap.sam |cut -f 3|grep kraken|sort|uniq > bacteria_name
 seqkit grep -f bacteria_name  ../Bacteria_genome/library.fna  > Bacteria_library.fna
 #2) merge bacteria and zebrafish fasta
-cat Bacteria_library.fna  ../Zebrafish_genome/GCA_903798175.1_fDreNAz1.1_genomic.fna  > merged_reference.fa
+cat Bacteria_library.fna  ../Zebrafish_genome/Zebragenome_without_contig.fa > merged_reference.fa
 
 
 #Blast Search
