@@ -13,3 +13,6 @@ samtools index output_minimap.sorted.bam
 
 #5
 sniffles -i output_minimap.sorted.bam -v output_min_support_1.vcf --minsupport 0
+
+#6
+less output_min_support_1.vcf |grep Sniffles2.INS|awk '{print ">"$1"_"NR,"\n"$5}' > Inserted.fasta
