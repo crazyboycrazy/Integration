@@ -9,3 +9,7 @@ samtools sort output_minimap.bam > output_minimap.sorted.bam
 
 #4
 samtools index output_minimap.sorted.bam
+
+
+#5
+sniffles -i output_minimap.sorted.bam -v output_min_support_1.vcf --minsupport 0
