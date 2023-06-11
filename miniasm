@@ -3,3 +3,9 @@
 
 
 #2
+../../miniasm/miniasm -f ../merged.fastq  minmap.paf.gz > miniasm.gfa
+
+
+
+#3
+awk '/^S/{print ">"$2"\n"$3}' miniasm.gfa > miniasm.fasta
